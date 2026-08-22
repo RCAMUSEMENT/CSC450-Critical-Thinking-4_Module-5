@@ -7,7 +7,7 @@
 
 using namespace std;
 
-// Fantasy text-scroll animation with a deliberate timing cadence
+// Fantasy text-scroll animation with a fun little timing cadence
 void scrollManaText(const string& text, int delayMs = 20) {
     for (char c : text) {
         cout << c << flush;
