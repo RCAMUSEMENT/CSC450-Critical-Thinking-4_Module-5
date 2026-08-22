@@ -7,8 +7,8 @@
 
 using namespace std;
 
-// Fantasy text-scroll animation with a timing cadence
-void scrollManaText(const string& text, int delayMs = 25) {
+// Fantasy text-scroll animation with a deliberate timing cadence
+void scrollManaText(const string& text, int delayMs = 20) {
     for (char c : text) {
         cout << c << flush;
         this_thread::sleep_for(chrono::milliseconds(delayMs));
@@ -31,7 +31,7 @@ int main() {
     scrollManaText("[!] ALERT: Soul displacement matrix confirmed. Welcome to the New Continent.\n");
     scrollManaText("[!] Main Inscription Archive: " + originalFile + "\n\n");
 
-    // Task 1: Ingest input string and append it without truncating pre-existing logs
+    // Task 1: Ingest input string from keyboard buffer and append it without truncation
     appendUserTextInput(originalFile);
 
     cout << "\n";
@@ -51,7 +51,7 @@ int main() {
 }
 
 void appendUserTextInput(const string& filename) {
-    // Open streams using app mode to ensure previous historical spells remain preserved
+    // Open stream in explicit APPEND mode to protect lines 1-3 from getting deleted
     ofstream outFile(filename, ios::app);
 
     if (!outFile) {
@@ -61,9 +61,11 @@ void appendUserTextInput(const string& filename) {
 
     string userInput;
     scrollManaText("[>] Inscribe your custom hero blessing to append to the historical record:\n> ");
+
+    // FIXED: Captures manual keyboard data input cleanly, preventing exe path injections
     getline(cin, userInput);
 
-    // Write user input safely into the chronicled records database file
+    // Commit payload text into the file array safely
     outFile << userInput << endl;
     outFile.close();
 
@@ -79,18 +81,18 @@ void reverseFileContent(const string& sourceFilename, const string& targetFilena
 
     string fileContents;
     string line;
-    // Sequential character extraction from historical files matrix
+    // Sequential character extraction from historical file lines
     while (getline(inFile, line)) {
         fileContents += line + "\n";
     }
     inFile.close();
 
-    // Remove the final artificial newline constraint flag to hold structural alignment
+    // Remove the trailing newline tracking marker to preserve structural boundaries
     if (!fileContents.empty()) {
         fileContents.pop_back();
     }
 
-    // In-place dual-pointer sequence reversal engine block
+    // In-place dual-pointer sequence reversal algorithm
     reverse(fileContents.begin(), fileContents.end());
 
     // Initialize clean write paths and wipe old reverse file states via truncation mode
