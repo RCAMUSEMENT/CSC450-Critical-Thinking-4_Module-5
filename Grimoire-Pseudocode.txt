@@ -1,0 +1,74 @@
+START
+    // Initialize standard file system paths and character trackers
+    DECLARE STRING sourceFile = "CSC450_CT5_mod5.txt"
+    DECLARE STRING reverseFile = "CSC450-mod5-reverse.txt"
+    DECLARE STRING blessingInput = ""
+    DECLARE STRING fullChronicleText = ""
+    DECLARE STRING temporaryLine = ""
+
+    // Set console aura properties to bright cyan/blue
+    EXECUTE terminal_color_shift("Cyan Aura")
+
+    DISPLAY_ANIMATED "====================================================================="
+    DISPLAY_ANIMATED " [MANA_LINK] SACRED RUNIC GRIMOIRE — WORLD TRANSIT RECONSTITUTION    "
+    DISPLAY_ANIMATED "====================================================================="
+    DISPLAY_ANIMATED "[!] ALERT: Soul displacement matrix confirmed. Welcome to the New Continent."
+    DISPLAY_ANIMATED "[!] Main Inscription Archive: " + sourceFile + "\n"
+
+    // TASK 1: Ingest User Blessing and Append to Ledger
+    DISPLAY_ANIMATED "[>] Inscribe your custom hero blessing to append to the historical record:\n> "
+    READ blessingInput from user keyboard buffer
+
+    OPEN sourceFile in FILE APPEND MODE
+    IF sourceFile stream fails to initialize THEN
+        DISPLAY_ERROR "[!] ERROR: The grimoire spine is locked by high-tier magic."
+        EXIT PROGRAM
+    ENDIF
+
+    WRITE blessingInput + newline_character to sourceFile
+    CLOSE sourceFile
+    DISPLAY_ANIMATED "[+] SUCCESS: Sacred incantation permanently added to the ledger without data loss.\n"
+
+    // TASK 2: Extract, Reverse, and Forge Mirror File
+    DISPLAY_ANIMATED "[*] CHANNELING SPIRITUAL CORE: RUNNING RETROGRADE TEMPORAL REVERSAL..."
+    DISPLAY_ANIMATED "[*] Inverting all runic syllables within the record array to stabilize mana..."
+    EXECUTE delay_cadence(1 Second) // Dramatic animation pause
+
+    OPEN sourceFile in FILE READ MODE
+    IF sourceFile stream fails to initialize THEN
+        DISPLAY_ERROR "[!] ERROR: Ingestion stream channel interrupted."
+        EXIT PROGRAM
+    ENDIF
+
+    WHILE text lines are successfully extracted from sourceFile
+        READ temporaryLine
+        CONCATENATE temporaryLine + newline_character onto fullChronicleText
+    ENDWHILE
+    CLOSE sourceFile
+
+    // Trim trailing character off the text array to maintain perfect alignment boundary
+    IF fullChronicleText array size > 0 THEN
+        REMOVE last character element from fullChronicleText
+    ENDIF
+
+    // Core Inversion Algorithm Engine Loop
+    REVERSE the chronological array sequence of all characters inside fullChronicleText
+
+    // Write final output to reverse disk destination via truncation mode
+    OPEN reverseFile in FILE WRITE/TRUNCATE MODE
+    IF reverseFile stream fails to initialize THEN
+        DISPLAY_ERROR "[!] ERROR: Crystal lens mirror destination unavailable."
+        EXIT PROGRAM
+    ENDIF
+
+    WRITE fullChronicleText directly into reverseFile
+    CLOSE reverseFile
+
+    DISPLAY_ANIMATED "[+] SUCCESS: Chrono-reversed mirror reflection completely forged at " + reverseFile + "\n"
+    DISPLAY_ANIMATED "====================================================================="
+    DISPLAY_ANIMATED " [STABILIZED] COUNTER-CURSE INSCRIBED // GRIMOIRE CONCLUDED         "
+    DISPLAY_ANIMATED "====================================================================="
+
+    // Clean up font parameters and restore default environment colors
+    EXECUTE terminal_color_reset()
+END
