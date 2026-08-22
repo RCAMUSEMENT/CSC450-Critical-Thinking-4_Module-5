@@ -4,9 +4,13 @@
     "dictionaryDefinitions": [],
     "dictionaries": [],
     "words": [
+        "Bindu",
         "Chrono",
         "ENDWHILE",
-        "Isekai"
+        "getline",
+        "Isekai",
+        "supervison",
+        "trunc"
     ],
     "ignoreWords": [],
     "import": []
